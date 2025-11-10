@@ -20,8 +20,6 @@ This tool **expands/rewrites** where needed so macros actually work under KaTeX.
   - `\DeclareMathOperator{\foo}{bar}` → `\operatorname{bar}`
   - `\DeclareMathOperator*{\Foo}{Bar}` → `\operatorname*{Bar}`
 
----
-
 ## Install
 
 ```bash
@@ -31,8 +29,6 @@ pnpm add katex-macro-compiler
 # or
 yarn add katex-macro-compiler
 ```
-
----
 
 ## Usage
 
