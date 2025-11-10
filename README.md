@@ -75,13 +75,10 @@ Notes:
 - `\enorm` expands `\norm[2]{…}` to a concrete subscript
 - `\DeclareMathOperator` forms become the appropriate `\operatorname` variants
 
-## Supported constructs (subset)
+## Supported constructs
 
 - `\newcommand`, `\renewcommand` with up to 9 arguments
-- Optional argument **with default only** (fixed at compile time)
 - `\DeclareMathOperator` / `\DeclareMathOperator*`
-- Nested macro references (expanded to remove optional-arg dependencies)
-- Comments (`% ...`) are ignored
 
 ## Limitations
 
