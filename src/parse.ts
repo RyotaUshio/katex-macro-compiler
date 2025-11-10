@@ -16,7 +16,7 @@ export function parseMacros(source: string): Record<string, string> {
     return macros;
 }
 
-const trim = (line: string) => line.replace(/(?<!\\)%.*$/, '').trim();
+const trim = (line: string): string => line.replace(/(?<!\\)%.*$/, '').trim();
 
 const newCommand = regex(
     '^\\s*\\\\(re)?newcommand{(?<cmd>[^}]*)}(\\[(?<nargs>\\d+)\\](\\[(?<optional>[^\\]]*)\\])?)?{(?<def>.*)}',
@@ -28,7 +28,7 @@ interface CmdsWithOptionalArgs {
     def: (optionalArg: string, ...args: string[]) => string;
 }
 
-const getCmdsWithOptionalArg = (lines: string[]) => {
+const getCmdsWithOptionalArg = (lines: string[]): CmdsWithOptionalArgs[] => {
     const cmdsWithOptionalArgs = lines
         .map(processNewCommandWithOptionalArg)
         .filter(cmd => !!cmd);
@@ -59,7 +59,7 @@ const processNewCommandWithOptionalArg = (
 const processNewCommand = (
     line: string,
     cmdsWithOptionalArgs: CmdsWithOptionalArgs[],
-) => {
+): [string, string] | null => {
     const result = newCommand.exec(trim(line));
     if (!result) return null;
     const { cmd, optional } = result.groups;
@@ -104,7 +104,7 @@ const declareMathOperator = regex(
 
 // KaTeX does not support \DeclareMathOperator, so rewrite the line
 // using \operatorname
-const processDeclareMathOperator = (line: string) => {
+const processDeclareMathOperator = (line: string): [string, string] | null => {
     const result = declareMathOperator.exec(trim(line));
     if (!result) return null;
     const { operator, def, limits } = result.groups;
