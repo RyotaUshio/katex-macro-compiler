@@ -1,0 +1,32 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`works 1`] = `
+{
+  "\\C": "\\mathbb{C}",
+  "\\Img": "\\operatorname{Im}",
+  "\\Ker": "\\operatorname{Ker}",
+  "\\N": "\\mathbb{N}",
+  "\\Q": "\\mathbb{Q}",
+  "\\R": "\\mathbb{R}",
+  "\\Tr": "\\operatorname{Tr}",
+  "\\Z": "\\mathbb{Z}",
+  "\\abs": "\\left\\lvert #1 \\right\\rvert",
+  "\\argmax": "\\operatorname*{arg\\,max}",
+  "\\argmin": "\\operatorname*{arg\\,min}",
+  "\\enorm": "\\left\\lVert #1 \\right\\rVert_{2}",
+  "\\epsilon": "\\varepsilon",
+  "\\fnorm": "\\left\\lVert #1 \\right\\rVert_{\\mathrm{F}}",
+  "\\hat": "\\widehat",
+  "\\lipnorm": "\\left\\lVert #1 \\right\\rVert_{\\mathrm{Lip}}",
+  "\\norm": "\\left\\lVert #1 \\right\\rVert_{}",
+  "\\opnorm": "\\left\\lVert #1 \\right\\rVert_{\\mathrm{op}}",
+  "\\psinorm": "\\left\\lVert #1 \\right\\rVert_{\\psi_{}}",
+  "\\rank": "\\operatorname{rank}",
+  "\\senorm": "\\left\\lVert #1 \\right\\rVert_{\\psi_{1}}",
+  "\\set": "\\left\\{ #1 \\right\\}",
+  "\\sgnorm": "\\left\\lVert #1 \\right\\rVert_{\\psi_{2}}",
+  "\\sign": "\\operatorname{sign}",
+  "\\supnorm": "\\left\\lVert #1 \\right\\rVert_{\\infty}",
+  "\\tr": "\\operatorname{tr}",
+}
+`;

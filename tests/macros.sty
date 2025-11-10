@@ -1,0 +1,35 @@
+% Greek
+\renewcommand{\epsilon}{\varepsilon} % comment
+
+% sets
+\newcommand{\R}{\mathbb{R}} % real numbers
+\newcommand{\C}{\mathbb{C}} % complex numbers
+\newcommand{\Q}{\mathbb{Q}} % rational numbers
+\newcommand{\N}{\mathbb{N}} % natural numbers
+\newcommand{\Z}{\mathbb{Z}} % integers
+
+% brackets etc
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert} % absolute value
+\newcommand{\norm}[2][]{\left\lVert #2 \right\rVert_{#1}} % norm
+\newcommand{\supnorm}[1]{\norm[\infty]{#1}} % sup norm
+\newcommand{\enorm}[1]{\norm[2]{#1}} % Euclidean norm
+\newcommand{\opnorm}[1]{\norm[\mathrm{op}]{#1}} % operator norm
+\newcommand{\fnorm}[1]{\norm[\mathrm{F}]{#1}} % Frobenius norm
+\newcommand{\psinorm}[2][]{\norm[\psi_{#1}]{#2}} % p-th Orlicz norm
+\newcommand{\sgnorm}[1]{\psinorm[2]{#1}} % sub-gaussian norm
+\newcommand{\senorm}[1]{\psinorm[1]{#1}} % sub-exponential norm
+\newcommand{\lipnorm}[1]{\norm[\mathrm{Lip}]{#1}} % Lipschitz norm
+
+% misc
+\newcommand{\sign}{\operatorname{sign}}
+\renewcommand{\hat}{\widehat}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\DeclareMathOperator{\Tr}{Tr} % trace
+\DeclareMathOperator{\tr}{tr} % trace
+\DeclareMathOperator{\Ker}{Ker} % kernel
+\DeclareMathOperator{\Img}{Im} % image
+\DeclareMathOperator{\rank}{rank} % rank

@@ -1,0 +1,1 @@
+export { parseMacros } from './parse';
