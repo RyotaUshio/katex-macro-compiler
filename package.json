@@ -1,6 +1,6 @@
 {
   "name": "katex-macro-compiler",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Transpile LaTeX macro definitions to KaTeX-compatible macro object",
   "types": "./dist/index.d.mts",
   "exports": {
