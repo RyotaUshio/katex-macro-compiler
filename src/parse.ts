@@ -6,10 +6,11 @@ export function parseMacros(source: string): Record<string, string> {
     const cmdsWithOptionalArgs = getCmdsWithOptionalArg(lines);
     const macros = Object.fromEntries(
         lines
-            .map(
+            .flatMap(
                 line =>
                     processNewCommand(line, cmdsWithOptionalArgs) ??
-                    processDeclareMathOperator(line),
+                    processDeclareMathOperator(line) ??
+                    processDeclarePairedDelimiter(line),
             )
             .filter(line => !!line),
     );
@@ -59,7 +60,7 @@ const processNewCommandWithOptionalArg = (
 const processNewCommand = (
     line: string,
     cmdsWithOptionalArgs: CmdsWithOptionalArgs[],
-): [string, string] | null => {
+): [string, string][] | null => {
     const result = newCommand.exec(trim(line));
     if (!result) return null;
     const { cmd, optional } = result.groups;
@@ -95,7 +96,7 @@ const processNewCommand = (
             return iarg === '1' ? optional : `#${parseInt(iarg) - 1}`;
         });
     }
-    return [cmd, def];
+    return [[cmd, def]];
 };
 
 const declareMathOperator = regex(
@@ -104,10 +105,29 @@ const declareMathOperator = regex(
 
 // KaTeX does not support \DeclareMathOperator, so rewrite the line
 // using \operatorname
-const processDeclareMathOperator = (line: string): [string, string] | null => {
+const processDeclareMathOperator = (line: string): [string, string][] | null => {
     const result = declareMathOperator.exec(trim(line));
     if (!result) return null;
     const { operator, def, limits } = result.groups;
     const operatorName = '\\operatorname' + (limits ? '*' : '');
-    return [operator, operatorName + '{' + def + '}'];
+    return [[operator, operatorName + '{' + def + '}']];
+};
+
+const declarePairedDelimiter = regex(
+    '\\DeclarePairedDelimiter{(?<cmd>[^}]*)}{(?<left>[^}]*)}{(?<right>.*)}',
+);
+
+// KaTeX does not support \DeclarePairedDelimiter, so translate it to
+// two macros (stared and unstared)
+export const processDeclarePairedDelimiter = (
+    line: string,
+): [string, string][] | null => {
+    const result = declarePairedDelimiter.exec(trim(line));
+    if (!result) return null;
+    const { cmd, left, right } = result.groups;
+    return [
+        [cmd, `\\@ifstar${cmd}@star${cmd}@nostar`],
+        [`${cmd}@star`, `\\left${left} #1 \\right${right}`],
+        [`${cmd}@nostar`, `${left} #1 ${right}`],
+    ];
 };

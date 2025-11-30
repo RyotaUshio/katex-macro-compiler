@@ -8,7 +8,7 @@ Zero-fuss way to keep your LaTeX macros in one place while rendering with KaTeX.
 Managing macros per engine (real LaTeX, MathJax, KaTeX, ...) is painful; you want **one source of truth** for macros.
 However, KaTeX expects a JavaScript object, not `.sty` syntax, so we need some conversion tool.
 
-KaTeX lacks some LaTeX features, so simply rewriting `.sty` to a JSON object often fails (`\newcommand` with optional args, `\DeclareMathOperator`, etc.).  
+KaTeX lacks some LaTeX features, so simply rewriting `.sty` to a JSON object often fails (`\newcommand` with optional args, `\DeclareMathOperator`, `\DeclarePairedDelimiter`, etc.).  
 This tool **expands/rewrites** where needed so macros actually work under KaTeX.
 
 ## What it does
@@ -16,9 +16,10 @@ This tool **expands/rewrites** where needed so macros actually work under KaTeX.
 - **Parses** a LaTeX preamble / `.sty` text and produces a KaTeX `macros` map.
 - **Optional arguments**: fixes them to their default values (KaTeX lacks defaulted optionals).
 - **Dependency expansion**: if a macro uses another optional-arg macro, expands until no such dependency remains.
-- **Operators**: converts
+- **mathtools support**: converts
   - `\DeclareMathOperator{\foo}{bar}` → `\operatorname{bar}`
   - `\DeclareMathOperator*{\Foo}{Bar}` → `\operatorname*{Bar}`
+  - `\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}` → `\norm` and `\norm*` variants
 
 ## Install
 
@@ -79,6 +80,7 @@ Notes:
 
 - `\newcommand`, `\renewcommand` with up to 9 arguments
 - `\DeclareMathOperator` / `\DeclareMathOperator*`
+- `\DeclarePairedDelimiter` (generates both normal and starred variants, but no optional sizing)
 
 ## Limitations
 
